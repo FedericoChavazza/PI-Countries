@@ -14,9 +14,7 @@ router.get("/countries", async function (req, res, next) {
     const { name } = req.query;
 
     if (name) {
-      var promesaNombre = await Country.findAll({
-        attributes: ["name", "img", "capital", "continent", "id"],
-      });
+      var promesaNombre = await Country.findAll();
       var filter = promesaNombre.filter((search) => {
         var boolean = true;
         for (let i = 0; i < name.length; i++) {
@@ -30,25 +28,31 @@ router.get("/countries", async function (req, res, next) {
           return search;
         }
       });
-      return res.json(filter.length !== 0 ? filter : "Country Not Found!");
+      return res.json(filter.length !== 0 ? filter : []);
     } else {
-      var promesaNombre = await Country.findAll({
-        attributes: ["name", "img", "capital", "continent", "id"],
-      });
+      var promesaNombre = await Country.findAll();
       return res.json(promesaNombre);
     }
   } catch (error) {
-    next(error);
+    next({ msg: "an error has ocurred", status: 500 });
   }
 });
 
 router.get("/countries/:idCountry", async function (req, res, next) {
   try {
     if (req.params.idCountry) {
-      var idFound = await Country.findByPk(req.params.idCountry);
-      return res.send(idFound ? idFound : "Country not");
+      var idFound = await Country.findByPk(req.params.idCountry, {
+        include: Activities,
+      });
+      return res.json(
+        idFound
+          ? idFound
+          : { msg: "The key does not belong to an existing country" }
+      );
     } else {
-      ("xD");
+      res
+        .sendStatus(404)
+        .json({ msg: "In order to search by ID, you have to enter a key!" });
     }
   } catch (error) {
     next(error);
