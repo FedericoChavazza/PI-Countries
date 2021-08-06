@@ -14,20 +14,6 @@ export function getCountries(name) {
   };
 }
 
-export function orderCountries(payload) {
-  return {
-    type: "ORDER_COUNTRIES",
-    payload: payload,
-  };
-}
-
-export function orderByPopulation(payload) {
-  return {
-    type: "ORDER_POPULATION",
-    payload: payload,
-  };
-}
-
 export function countryDetails(id) {
   return function (dispatch) {
     return axios
