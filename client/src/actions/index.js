@@ -26,3 +26,13 @@ export function countryDetails(id) {
       });
   };
 }
+
+export function postCountries(payload) {
+  return function (dispatch) {
+    return axios
+      .post("http://localhost:3001/activity", payload)
+      .then((promise) => {
+        return promise.data;
+      });
+  };
+}

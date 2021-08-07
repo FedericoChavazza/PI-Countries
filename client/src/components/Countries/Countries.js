@@ -44,7 +44,7 @@ function NavCountries(props) {
         return e.continent === orderCountries.continent;
       });
     }
-    //////////////////Alphabetical/////////////
+
     if (orderCountries.order === "Dec") {
       filter = filter.slice().sort((a, b) => a.name.localeCompare(b.name));
     }
@@ -55,17 +55,17 @@ function NavCountries(props) {
     ////////////////Population///////////////
 
     if (orderCountries.order === "PopulationDec") {
-      filter = filter
-        .slice()
-        .sort((a, b) => (a.population < b.population ? 1 : -1));
+      filter = [...filter].sort((a, b) =>
+        a.population < b.population ? 1 : -1
+      );
     }
     if (orderCountries.order === "PopulationAsc") {
       console.log("hola");
-      filter = filter
-        .slice()
-        .sort((a, b) => (a.population > b.population ? 1 : -1));
+      filter = [...filter].sort((a, b) =>
+        a.population > b.population ? 1 : -1
+      );
     }
-
+    //////////Alphabetical////////////////
     console.log(filter);
     console.log(orderCountries);
 
@@ -95,14 +95,17 @@ function NavCountries(props) {
           </Link>
         </div>
       ))}{" "}
+      <label>Alphabetical</label>
       <select name="order" onChange={(e) => handleFilter(e)}>
         <option value="Dec">Dec</option>
         <option value="Asc">Asc</option>
       </select>
+      <label>Population</label>
       <select name="order" onChange={(e) => handleFilter(e)}>
         <option value="PopulationDec">Dec</option>
         <option value="PopulationAsc">Asc</option>
       </select>
+      <label>Continent</label>
       <select name="continent" onChange={(e) => handleFilter(e)}>
         <option selected value="DefaultCountries">
           Default

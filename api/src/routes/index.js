@@ -61,8 +61,8 @@ router.get("/countries/:idCountry", async function (req, res, next) {
 
 router.post("/activity", async function (req, res, next) {
   try {
-    const { name, difficulty, duration, season } = req.body;
-    let [activity, created] = await Activities.findOrCreate({
+    const { idCountry, name, difficulty, duration, season } = req.body;
+    let [activity] = await Activities.findOrCreate({
       where: {
         name: name,
         difficulty: difficulty,
@@ -76,8 +76,8 @@ router.post("/activity", async function (req, res, next) {
         season: season,
       },
     });
-
-    res.json({ activity, created });
+    await activity.setCountries(idCountry); //[ARG, BOL, PER]
+    res.json(activity);
   } catch (error) {
     next(error);
   }
