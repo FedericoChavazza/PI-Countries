@@ -11,6 +11,12 @@ function NavCountries(props) {
     continent: "DefaultCountries",
   });
   const [filterCountries, setCountriesFilter] = useState([]);
+  const [filterActivities, setFilterActivities] = useState([]);
+  const [selectActivity, setSelectActivity] = useState("");
+
+  function handleSelect(event) {
+    setSelectActivity(event.target.value);
+  }
 
   function handleFilter(event) {
     setorderCountries({
@@ -21,13 +27,10 @@ function NavCountries(props) {
 
   function handleChange(event) {
     setCountrySearch(event.target.value);
-    console.log(event.target.name);
   }
   function handleSubmit(event) {
     event.preventDefault();
     props.getCountries(countrySearch);
-    console.log(event.target.name);
-    console.log(event.target.value);
   }
 
   useEffect(() => {
@@ -36,6 +39,7 @@ function NavCountries(props) {
   /////////////useEffect to order//////////////
   useEffect(() => {
     var filter = props.country;
+    var activity = [];
 
     ////////////////Continents///////////////
 
@@ -45,6 +49,21 @@ function NavCountries(props) {
       });
     }
 
+    for (let key in filter) {
+      if (filter[key].activities.length !== 0) {
+        filter[key].activities.forEach((e) => {
+          if (activity.includes(e.name)) {
+            return;
+          } else {
+            activity.push(e.name);
+          }
+        });
+      }
+    }
+    setFilterActivities(activity);
+
+    //////////Alphabetical////////////////
+
     if (orderCountries.order === "Dec") {
       filter = filter.slice().sort((a, b) => a.name.localeCompare(b.name));
     }
@@ -52,7 +71,7 @@ function NavCountries(props) {
       filter = filter.slice().sort((b, a) => a.name.localeCompare(b.name));
     }
 
-    ////////////////Population///////////////
+    //////////Population/////////////////
 
     if (orderCountries.order === "PopulationDec") {
       filter = [...filter].sort((a, b) =>
@@ -65,13 +84,10 @@ function NavCountries(props) {
         a.population > b.population ? 1 : -1
       );
     }
-    //////////Alphabetical////////////////
-    console.log(filter);
-    console.log(orderCountries);
 
     setCountriesFilter(filter);
   }, [orderCountries, props.country]);
-  console.log(filterCountries);
+
   return (
     <div>
       <div>
@@ -120,6 +136,14 @@ function NavCountries(props) {
       <Link to="/activity">
         <button>buenosDias</button>
       </Link>
+      <select value={selectActivity} onChange={(e) => handleSelect(e)}>
+        <option value="default">default</option>
+        {filterActivities.map((e, i) => {
+          <option key={i} value={selectActivity}>
+            {e}
+          </option>;
+        })}
+      </select>
     </div>
   );
 }

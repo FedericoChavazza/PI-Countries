@@ -14,7 +14,9 @@ router.get("/countries", async function (req, res, next) {
     const { name } = req.query;
 
     if (name) {
-      var promesaNombre = await Country.findAll();
+      var promesaNombre = await Country.findAll({
+        include: Activities,
+      });
       var filter = promesaNombre.filter((search) => {
         var boolean = true;
         for (let i = 0; i < name.length; i++) {
@@ -30,7 +32,7 @@ router.get("/countries", async function (req, res, next) {
       });
       return res.json(filter.length !== 0 ? filter : []);
     } else {
-      var promesaNombre = await Country.findAll();
+      var promesaNombre = await Country.findAll({ include: Activities });
       return res.json(promesaNombre);
     }
   } catch (error) {
