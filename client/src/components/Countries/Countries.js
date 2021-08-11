@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getCountries } from "../../actions/index";
 import { connect } from "react-redux";
 import country from "../../reducer";
+import style from "../Countries/Countries.css";
 
 function NavCountries(props) {
   const [countrySearch, setCountrySearch] = useState("");
@@ -12,7 +13,15 @@ function NavCountries(props) {
   });
   const [filterCountries, setCountriesFilter] = useState([]);
   const [filterActivities, setFilterActivities] = useState([]);
-  const [selectActivity, setSelectActivity] = useState("");
+  const [selectActivity, setSelectActivity] = useState("default");
+  const [num, setNum] = useState([]);
+  const [buttonNum, setButtonNum] = useState("1");
+
+  function handleButton(event) {
+    console.log(num);
+    setButtonNum(event.target.value);
+    console.log(buttonNum);
+  }
 
   function handleSelect(event) {
     setSelectActivity(event.target.value);
@@ -27,11 +36,25 @@ function NavCountries(props) {
 
   function handleChange(event) {
     setCountrySearch(event.target.value);
+    props.getCountries(event.target.value);
+    setButtonNum("1");
   }
   function handleSubmit(event) {
     event.preventDefault();
     props.getCountries(countrySearch);
+    setButtonNum("1");
   }
+
+  useEffect(() => {
+    var mapNum = [];
+
+    var count = Math.ceil(filterCountries.length / 9);
+    for (let d = 0; d < count; d++) {
+      mapNum.push(d + 1);
+    }
+    console.log(mapNum);
+    setNum(mapNum);
+  }, [filterCountries]);
 
   useEffect(() => {
     props.getCountries(countrySearch);
@@ -40,6 +63,14 @@ function NavCountries(props) {
   useEffect(() => {
     var filter = props.country;
     var activity = [];
+    var mapNum = [];
+
+    var count = Math.ceil(filter.length / 9);
+    for (let d = 0; d <= count; d++) {
+      mapNum.push(d);
+    }
+    console.log(mapNum);
+    setNum(mapNum);
 
     ////////////////Continents///////////////
 
@@ -49,17 +80,39 @@ function NavCountries(props) {
       });
     }
 
-    for (let key in filter) {
-      if (filter[key].activities.length !== 0) {
-        filter[key].activities.forEach((e) => {
-          if (activity.includes(e.name)) {
-            return;
-          } else {
-            activity.push(e.name);
-          }
+    props.country.forEach((e) => {
+      e.activities.forEach((actividad) => {
+        if (activity.includes(actividad.name)) {
+          return;
+        } else {
+          activity.push(actividad.name);
+        }
+      });
+    });
+
+    if (selectActivity !== "default") {
+      filter = filter.filter((e) => {
+        var yes = e.activities.find((actividad) => {
+          return actividad.name === selectActivity;
         });
-      }
+        console.log(yes, "hola");
+        return yes !== undefined;
+      });
     }
+
+    // console.log(activity);
+
+    // for (let key in filter) {
+    //   if (filter[key].activities.length !== 0) {
+    //     filter[key].activities.forEach((e) => {
+    //       if (activity.includes(e.name)) {
+    //         return;
+    //       } else {
+    //         activity.push(e.name);
+    //       }
+    //     });
+    //   }
+    // }
     setFilterActivities(activity);
 
     //////////Alphabetical////////////////
@@ -79,14 +132,13 @@ function NavCountries(props) {
       );
     }
     if (orderCountries.order === "PopulationAsc") {
-      console.log("hola");
       filter = [...filter].sort((a, b) =>
         a.population > b.population ? 1 : -1
       );
     }
 
     setCountriesFilter(filter);
-  }, [orderCountries, props.country]);
+  }, [orderCountries, props.country, selectActivity]);
 
   return (
     <div>
@@ -101,49 +153,80 @@ function NavCountries(props) {
             value={countrySearch}
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Button</button>
         </form>
       </div>
-      {filterCountries.map((e) => (
-        <div>
-          <Link to={`/countries/${e.id}`}>
-            <h3>{e.name}</h3>
-          </Link>
+      <div className="nav">
+        <div className="ok">
+          <div className="hola">
+            <label>Alphabetical</label>
+            <select name="order" onChange={(e) => handleFilter(e)}>
+              <option value="Dec">Dec</option>
+              <option value="Asc">Asc</option>
+            </select>
+          </div>
+          <div className="hola">
+            <label>Population</label>
+            <select name="order" onChange={(e) => handleFilter(e)}>
+              <option value="PopulationDec">Dec</option>
+              <option value="PopulationAsc">Asc</option>
+            </select>
+          </div>
+          <div className="hola">
+            <label>Continent</label>
+            <select name="continent" onChange={(e) => handleFilter(e)}>
+              <option selected value="DefaultCountries">
+                Default
+              </option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Americas">Americas</option>
+              <option value="Africa">Africa</option>
+              <option value="Oceania">Oceania</option>
+              <option value="Polar">Polar</option>
+            </select>
+          </div>
+          <div className="hola">
+            <Link to="/inBetween">
+              <button>Activity</button>
+            </Link>
+          </div>
+          <div className="hola">
+            <select value={selectActivity} onChange={(e) => handleSelect(e)}>
+              <option selected value="default">
+                default
+              </option>
+              {filterActivities.map((e, i) => (
+                <option key={i} value={e}>
+                  {e}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      ))}{" "}
-      <label>Alphabetical</label>
-      <select name="order" onChange={(e) => handleFilter(e)}>
-        <option value="Dec">Dec</option>
-        <option value="Asc">Asc</option>
-      </select>
-      <label>Population</label>
-      <select name="order" onChange={(e) => handleFilter(e)}>
-        <option value="PopulationDec">Dec</option>
-        <option value="PopulationAsc">Asc</option>
-      </select>
-      <label>Continent</label>
-      <select name="continent" onChange={(e) => handleFilter(e)}>
-        <option selected value="DefaultCountries">
-          Default
-        </option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="Americas">Americas</option>
-        <option value="Africa">Africa</option>
-        <option value="Oceania">Oceania</option>
-        <option value="Polar">Polar</option>
-      </select>
-      <Link to="/activity">
-        <button>buenosDias</button>
-      </Link>
-      <select value={selectActivity} onChange={(e) => handleSelect(e)}>
-        <option value="default">default</option>
-        {filterActivities.map((e, i) => {
-          <option key={i} value={selectActivity}>
-            {e}
-          </option>;
+      </div>
+      <div className="grid">
+        {filterCountries
+          ? filterCountries.slice(9 * buttonNum - 9, 9 * buttonNum).map((e) => (
+              <div>
+                <Link to={`/countries/${e.id}`}>
+                  <h3 className="title">{e.name}</h3>
+                  <img className="juan" src={e.img} />
+                </Link>
+              </div>
+            ))
+          : []}{" "}
+      </div>
+      <div>
+        {num.map((e) => {
+          return (
+            e !== 0 && (
+              <button value={e} onClick={(e) => handleButton(e)}>
+                {e}
+              </button>
+            )
+          );
         })}
-      </select>
+      </div>
     </div>
   );
 }

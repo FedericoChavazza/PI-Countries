@@ -10,8 +10,8 @@ export default function OnlyCountry(props) {
   useEffect(() => {
     const countryId = props.match.params.id;
     dispatch(countryDetails(countryId));
+    console.log(oneCountry);
   }, []);
-
   return (
     <div>
       <h1>

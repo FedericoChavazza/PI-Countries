@@ -1,0 +1,53 @@
+.countries {
+  display: inline-block;
+  width: auto;
+  margin: 80px;
+}
+
+.juan {
+  width: 350px;
+  height: 200px;
+  border-radius: 0.4rem;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+.title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+.ok {
+  background-color: teal;
+  width: 85%;
+  top: -5px;
+  height: 100%;
+  position: relative;
+}
+
+.hola {
+  padding: 30px;
+  margin: 5px 20px;
+}
+
+.nav {
+  position: fixed;
+  height: 100%;
+  width: 45%;
+  left: -38%;
+  top: 0;
+  background: transparent;
+  transition: 1s all ease;
+  cursor: pointer;
+}
+.nav:hover {
+  left: 0;
+  transition: 1s all ease;
+}

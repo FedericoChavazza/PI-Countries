@@ -28,6 +28,7 @@ export function Tourism() {
 
   function handleChange(e) {
     setPostCountry({ ...postCountry, [e.target.name]: e.target.value });
+    setCountryInput(e.target.value);
   }
 
   function handleInput(e) {
