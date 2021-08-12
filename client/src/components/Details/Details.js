@@ -18,7 +18,7 @@ export default function OnlyCountry(props) {
         <Link to="/countries">
           <h2>go back!</h2>
         </Link>
-        <ul>
+        <ul list-style-type="none">
           <li>name: {oneCountry.name}</li>
           <li>
             <img src={oneCountry.img}></img>

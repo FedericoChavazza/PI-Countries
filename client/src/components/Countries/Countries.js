@@ -142,48 +142,51 @@ function NavCountries(props) {
 
   return (
     <div>
-      <div id="slider">
-        <figure>
-          <img src="https://iea.imgix.net/817ded0e-7bb6-4b79-b425-65e6f7b705f1/shutterstock_1484419673.jpg?auto=compress%2Cformat&fit=min&q=80&rect=0%2C517%2C3840%2C1643" />
-
-          <img src="https://cdn.theculturetrip.com/wp-content/uploads/2017/10/hernan-pinera-2-1024x576.jpg" />
-          <img src="https://iea.imgix.net/817ded0e-7bb6-4b79-b425-65e6f7b705f1/shutterstock_1484419673.jpg?auto=compress%2Cformat&fit=min&q=80&rect=0%2C517%2C3840%2C1643" />
-          <img src="https://images.theconversation.com/files/335290/original/file-20200515-138610-a2el71.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" />
-          <img src="https://iea.imgix.net/817ded0e-7bb6-4b79-b425-65e6f7b705f1/shutterstock_1484419673.jpg?auto=compress%2Cformat&fit=min&q=80&rect=0%2C517%2C3840%2C1643" />
-        </figure>
-      </div>
-
-      <div>
+      <div className="searchBar">
         <form onSubmit={(e) => handleSubmit(e)}>
           <h3>Search Countries!</h3>
+
           <input
-            placeholder="search..."
+            placeholder="search by name..."
             type="text"
             id="title"
             autoComplete="off"
             value={countrySearch}
             onChange={(e) => handleChange(e)}
           />
+          <div className="image"></div>
         </form>
       </div>
       <div className="nav">
         <div className="ok">
           <div className="hola">
-            <label>Alphabetical</label>
+            <div>
+              <h3>
+                Here, you'll be able to change, group countries the way you want
+                or create a new Activity for a specific one!
+              </h3>
+            </div>
+            <div>
+              <label>Alphabetical</label>
+            </div>
             <select name="order" onChange={(e) => handleFilter(e)}>
               <option value="Dec">Dec</option>
               <option value="Asc">Asc</option>
             </select>
           </div>
           <div className="hola">
-            <label>Population</label>
+            <div>
+              <label>Population</label>
+            </div>
             <select name="order" onChange={(e) => handleFilter(e)}>
               <option value="PopulationDec">Dec</option>
               <option value="PopulationAsc">Asc</option>
             </select>
           </div>
           <div className="hola">
-            <label>Continent</label>
+            <div>
+              <label>Continent</label>
+            </div>
             <select name="continent" onChange={(e) => handleFilter(e)}>
               <option selected value="DefaultCountries">
                 Default
@@ -197,11 +200,9 @@ function NavCountries(props) {
             </select>
           </div>
           <div className="hola">
-            <Link to="/inBetween">
-              <button>Activity</button>
-            </Link>
-          </div>
-          <div className="hola">
+            <div>
+              <label>Activities</label>
+            </div>
             <select value={selectActivity} onChange={(e) => handleSelect(e)}>
               <option selected value="default">
                 default
@@ -213,30 +214,37 @@ function NavCountries(props) {
               ))}
             </select>
           </div>
+          <div className="hola">
+            <Link to="/inBetween">
+              <button>Activity</button>
+            </Link>
+          </div>
         </div>
       </div>
       <div className="grid">
         {filterCountries
           ? filterCountries.slice(9 * buttonNum - 9, 9 * buttonNum).map((e) => (
-              <div>
+              <div className="countryCard">
                 <Link to={`/countries/${e.id}`}>
-                  <h3 className="title">{e.name}</h3>
                   <img className="juan" src={e.img} />
                 </Link>
+                <div className="countryCard-name">{e.name}</div>
               </div>
             ))
           : []}{" "}
       </div>
-      <div>
-        {num.map((e) => {
-          return (
-            e !== 0 && (
-              <button value={e} onClick={(e) => handleButton(e)}>
-                {e}
-              </button>
-            )
-          );
-        })}
+      <div className="absolute">
+        <div className="buttonSearch">
+          {num.map((e) => {
+            return (
+              e !== 0 && (
+                <button value={e} onClick={(e) => handleButton(e)}>
+                  {e}
+                </button>
+              )
+            );
+          })}
+        </div>
       </div>
     </div>
   );
