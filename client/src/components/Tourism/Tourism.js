@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { postCountries, getCountries } from "../../actions";
 import { Link } from "react-router-dom";
+import style from "../Countries/Countries.css";
 
 export function Tourism() {
   var country = useSelector((state) => state.countries);
@@ -28,14 +29,15 @@ export function Tourism() {
 
   function handleChange(e) {
     setPostCountry({ ...postCountry, [e.target.name]: e.target.value });
-    setCountryInput(e.target.value);
   }
 
   function handleInput(e) {
     setCountryInput(e.target.value);
+    dispatch(getCountries(e.target.value));
   }
-  const dataKey = [];
+
   function addCountry(e) {
+    const dataKey = [];
     var juan = country;
 
     var information = juan.filter(
@@ -48,9 +50,11 @@ export function Tourism() {
         dataKey.push(information[i].id);
         console.log(dataKey);
         if (postCountry.idCountry.includes(dataKey[0])) {
+          console.log(postCountry.idCountry);
           return;
         } else {
-          setPostCountry({
+          console.log(dataKey);
+          return setPostCountry({
             ...postCountry,
             idCountry: [...postCountry.idCountry, ...dataKey],
           });
@@ -80,66 +84,88 @@ export function Tourism() {
     dispatch(postCountries(postCountry));
   }
   return (
-    <div>
-      <div>
-        {postCountry.idCountry.map((e) => (
-          <h5>
-            {e}
-            <button onClick={() => deleteCountry(e)}>x</button>
-          </h5>
-        ))}
-      </div>
+    <div className="superDiv">
       {/* form para submitear con post */}
-      <form onSubmit={(e) => ultimateSubmit(e)}>
-        <label>Activity</label>
-        <input
-          value={postCountry.name}
-          placeholder="activity..."
-          name="name"
-          onChange={(e) => handleChange(e)}
-        ></input>
-        <label>Minutes</label>
-        <input
-          name="duration"
-          placeholder="duration..."
-          value={postCountry.duration}
-          onChange={(e) => handleChange(e)}
-        ></input>
-        <select name="difficulty" onChange={(e) => handleChange(e)}>
-          <option value="Select Difficulty">Select Difficulty</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <select name="season" onChange={(e) => handleChange(e)}>
-          <option value="Season">Ninguno</option>
-          <option value="Verano">Verano</option>
-          <option value="Otoño">Otoño</option>
-          <option value="Invierno">Invierno</option>
-          <option value="Primavera">Primavera</option>
-        </select>
-        <button type="submit">Submit!</button>
-      </form>
-      {/* form elegir pais */}
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input onChange={(e) => handleInput(e)}></input>
-        <div>
-          {countryMap.length < 50
-            ? countryMap.map((e) => (
-                <h4>
-                  {e}
-                  <button onClick={() => addCountry(e)}>+</button>
-                </h4>
-              ))
-            : []}
+      <div className="antesSuperDiv">
+        <div className="fede">
+          {" "}
+          <form onSubmit={(e) => ultimateSubmit(e)}>
+            <div className="chau">
+              <label>Activity</label>
+              <input
+                value={postCountry.name}
+                placeholder="activity..."
+                name="name"
+                onChange={(e) => handleChange(e)}
+              ></input>
+            </div>
+
+            <div className="chau">
+              <label>Minutes</label>
+              <input
+                name="duration"
+                placeholder="duration..."
+                value={postCountry.duration}
+                onChange={(e) => handleChange(e)}
+              ></input>
+            </div>
+            <div className="chau">
+              <select name="difficulty" onChange={(e) => handleChange(e)}>
+                <option value="Select Difficulty">Select Difficulty</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <div className="chau">
+              <select name="season" onChange={(e) => handleChange(e)}>
+                <option value="Season">Ninguno</option>
+                <option value="Verano">Verano</option>
+                <option value="Otoño">Otoño</option>
+                <option value="Invierno">Invierno</option>
+                <option value="Primavera">Primavera</option>
+              </select>
+              <button type="submit">Submit!</button>
+            </div>
+          </form>
         </div>
-        <button type="submit">Search!</button>
-      </form>
-      <h2>
-        <Link to="/countries">go Back</Link>
-      </h2>
+        <div className="fede">
+          {" "}
+          <div className="omori">
+            <label>Select a Country!</label>
+            <form onSubmit={(e) => handleSubmit(e)}>
+              <input onChange={(e) => handleInput(e)}></input>
+              <div className="fabri">
+                {countryMap.length < 50
+                  ? countryMap.map((e) => (
+                      <h4 onClick={() => addCountry(e)}>{e}</h4>
+                    ))
+                  : []}
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="fede">
+          <div className="overflow">
+            <div>
+              {postCountry.idCountry.map((e) => (
+                <h5>
+                  {e}
+                  <button onClick={() => deleteCountry(e)}>x</button>
+                </h5>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* form elegir pais */}
+
+        <h2>
+          <Link to="/countries">go Back</Link>
+        </h2>
+      </div>
     </div>
   );
 }
