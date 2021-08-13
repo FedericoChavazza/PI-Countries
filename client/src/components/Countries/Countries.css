@@ -18,12 +18,6 @@ body {
   grid-template-columns: 33% 33.33% 33.33%;
 }
 
-.grid img {
-  margin: 40px;
-  box-shadow: 2px 2px 3px 1px rgba(10, 10, 10, 0.6);
-  border: 1px solid teal;
-}
-
 .ok {
   background-color: teal;
   width: 85%;
@@ -47,6 +41,7 @@ body {
   transition: 1s all ease;
   cursor: pointer;
   border-radius: 0.3rem;
+  z-index: 1000000000000000000;
 }
 .nav:hover {
   left: 0;
@@ -73,7 +68,45 @@ body {
 }
 
 .chau {
-  margin: 40px 0;
+  margin: 20px 20px;
+}
+
+.chau select {
+  outline: none;
+  border-radius: 0.4rem;
+  height: 21px;
+  width: 175px;
+  text-align-last: center;
+}
+
+.chau button {
+  position: relative;
+  margin: 50px;
+  height: 40px;
+  width: 120px;
+  right: -300px;
+  top: 100px;
+  outline: none;
+  background-color: teal;
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 1rem;
+  color: rgb(240, 240, 240);
+  cursor: pointer;
+  font-size: medium;
+  transition: 0.7s all ease;
+}
+
+.error {
+  outline-color: red;
+  border-color: red;
+  border-radius: 0.4rem;
+}
+
+.chau button:hover {
+  background-color: rgb(0, 78, 61);
+  color: rgb(100, 100, 100);
+  transition: 0.7s all ease;
+  cursor: pointer;
 }
 .fabri {
   background-color: rgb(240, 240, 240);
@@ -239,8 +272,47 @@ body {
 }
 
 .countryCard img {
+  box-shadow: 2px 2px 3px 1px rgba(10, 10, 10, 0.6);
+  border: 1px solid teal;
   width: 350px;
   height: 200px;
   border-radius: 0.5rem;
   object-fit: cover;
+}
+
+.countryCard {
+  margin: 40px;
+  overflow: hidden;
+}
+
+.countryCard a {
+  position: relative;
+  overflow: hidden;
+}
+
+.countryCard-name {
+  width: 100%;
+  right: 0;
+  left: 0;
+  position: absolute;
+  bottom: -30px;
+  background-color: white;
+  transition: 0.5s all ease;
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 5px 0;
+  opacity: 0;
+}
+
+.countryCard a:hover .countryCard-name {
+  bottom: 5px;
+  opacity: 1;
+}
+
+.buttonNoStyle {
+  background: none;
+  border-radius: 0.5rem;
+  outline: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
 }

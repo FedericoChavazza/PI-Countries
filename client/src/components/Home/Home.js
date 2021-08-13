@@ -1,16 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BANDERA from "./images/BANDERA.jpg";
+import WORLD from "./images/FEDEFEDEFEDE.jpg";
+import PEOPLE from "./images/PEOPLE.jpg";
 
 export function Home() {
   return (
     <div className="home">
       <div id="slider">
         <figure>
-          <img src="https://iea.imgix.net/817ded0e-7bb6-4b79-b425-65e6f7b705f1/shutterstock_1484419673.jpg?auto=compress%2Cformat&fit=min&q=80&rect=0%2C517%2C3840%2C1643" />
-          <img src="https://cdn.theculturetrip.com/wp-content/uploads/2017/10/hernan-pinera-2-1024x576.jpg" />
-          <img src="https://iea.imgix.net/817ded0e-7bb6-4b79-b425-65e6f7b705f1/shutterstock_1484419673.jpg?auto=compress%2Cformat&fit=min&q=80&rect=0%2C517%2C3840%2C1643" />
-          <img src="https://images.theconversation.com/files/335290/original/file-20200515-138610-a2el71.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" />
-          <img src="https://iea.imgix.net/817ded0e-7bb6-4b79-b425-65e6f7b705f1/shutterstock_1484419673.jpg?auto=compress%2Cformat&fit=min&q=80&rect=0%2C517%2C3840%2C1643" />
+          <img src={WORLD} />
+          <img src={BANDERA} />
+          <img src={WORLD} />
+          <img src={PEOPLE} />
+          <img src={WORLD} />
         </figure>
       </div>
       <div className="estasHome">

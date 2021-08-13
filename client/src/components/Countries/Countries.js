@@ -226,9 +226,9 @@ function NavCountries(props) {
           ? filterCountries.slice(9 * buttonNum - 9, 9 * buttonNum).map((e) => (
               <div className="countryCard">
                 <Link to={`/countries/${e.id}`}>
-                  <img className="juan" src={e.img} />
+                  <img src={e.img} />
+                  <div className="countryCard-name">{e.name}</div>
                 </Link>
-                <div className="countryCard-name">{e.name}</div>
               </div>
             ))
           : []}{" "}

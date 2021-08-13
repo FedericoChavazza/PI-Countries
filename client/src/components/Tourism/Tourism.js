@@ -8,7 +8,6 @@ export function Tourism() {
   var country = useSelector((state) => state.countries);
   var dispatch = useDispatch();
 
-  const [countryInput, setCountryInput] = useState("");
   const [countryMap, setCountryMap] = useState([]);
   const [postCountry, setPostCountry] = useState({
     idCountry: [],
@@ -17,6 +16,7 @@ export function Tourism() {
     duration: "",
     season: "",
   });
+  const [errorHandler, setErrorHandler] = useState({});
 
   useEffect(() => {
     var info = country;
@@ -32,7 +32,6 @@ export function Tourism() {
   }
 
   function handleInput(e) {
-    setCountryInput(e.target.value);
     dispatch(getCountries(e.target.value));
   }
 
@@ -53,7 +52,6 @@ export function Tourism() {
           console.log(postCountry.idCountry);
           return;
         } else {
-          console.log(dataKey);
           return setPostCountry({
             ...postCountry,
             idCountry: [...postCountry.idCountry, ...dataKey],
@@ -73,15 +71,26 @@ export function Tourism() {
       };
     });
   }
-
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getCountries(countryInput));
   }
 
   function ultimateSubmit(e) {
+    setErrorHandler(error({ ...postCountry, [e.target.name]: e.target.value }));
     e.preventDefault();
-    dispatch(postCountries(postCountry));
+    let locura = error(postCountry);
+
+    if (Object.keys(locura).length === 0) {
+      dispatch(postCountries(postCountry));
+
+      alert(
+        `se a subido actividades a los siguientes paises! ${postCountry.idCountry.join(
+          " "
+        )}`
+      );
+    } else {
+      setErrorHandler(locura);
+    }
   }
   return (
     <div className="superDiv">
@@ -91,26 +100,47 @@ export function Tourism() {
           {" "}
           <form onSubmit={(e) => ultimateSubmit(e)}>
             <div className="chau">
-              <label>Activity</label>
+              <div>
+                <label>Activity</label>
+              </div>
               <input
+                className={errorHandler.name && "error"}
                 value={postCountry.name}
                 placeholder="activity..."
                 name="name"
                 onChange={(e) => handleChange(e)}
               ></input>
+              {errorHandler.name && (
+                <h5 style={{ color: "red" }}>{errorHandler.name}</h5>
+              )}
             </div>
 
             <div className="chau">
-              <label>Minutes</label>
+              <div>
+                <label>Minutes</label>
+              </div>
               <input
+                className={errorHandler.duration && "error"}
                 name="duration"
                 placeholder="duration..."
                 value={postCountry.duration}
                 onChange={(e) => handleChange(e)}
               ></input>
+              {errorHandler.duration && (
+                <h5 style={{ color: "red", outlineColor: "red" }}>
+                  {errorHandler.duration}
+                </h5>
+              )}
+            </div>
+            <div>
+              <label>Difficulty</label>
             </div>
             <div className="chau">
-              <select name="difficulty" onChange={(e) => handleChange(e)}>
+              <select
+                className={errorHandler.difficulty && "error"}
+                name="difficulty"
+                onChange={(e) => handleChange(e)}
+              >
                 <option value="Select Difficulty">Select Difficulty</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -118,16 +148,31 @@ export function Tourism() {
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
+              {errorHandler.difficulty && (
+                <h5 style={{ color: "red" }}>{errorHandler.difficulty}</h5>
+              )}
+            </div>
+            <div>
+              <label>Season</label>
             </div>
             <div className="chau">
-              <select name="season" onChange={(e) => handleChange(e)}>
+              <select
+                className={errorHandler.season && "error"}
+                name="season"
+                onChange={(e) => handleChange(e)}
+              >
                 <option value="Season">Ninguno</option>
                 <option value="Verano">Verano</option>
                 <option value="Otoño">Otoño</option>
                 <option value="Invierno">Invierno</option>
                 <option value="Primavera">Primavera</option>
               </select>
-              <button type="submit">Submit!</button>
+              {errorHandler.season && (
+                <h5 style={{ color: "red" }}>{errorHandler.season}</h5>
+              )}
+              <div>
+                <button type="submit">Submit!</button>
+              </div>
             </div>
           </form>
         </div>
@@ -136,7 +181,10 @@ export function Tourism() {
           <div className="omori">
             <label>Select a Country!</label>
             <form onSubmit={(e) => handleSubmit(e)}>
-              <input onChange={(e) => handleInput(e)}></input>
+              <input
+                className={errorHandler.idCountry && "error"}
+                onChange={(e) => handleInput(e)}
+              ></input>
               <div className="fabri">
                 {countryMap.length < 50
                   ? countryMap.map((e) => (
@@ -144,16 +192,44 @@ export function Tourism() {
                     ))
                   : []}
               </div>
+              {errorHandler.idCountry && (
+                <h5 style={{ color: "red" }}>{errorHandler.idCountry}</h5>
+              )}
             </form>
           </div>
         </div>
         <div className="fede">
           <div className="overflow">
-            <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               {postCountry.idCountry.map((e) => (
-                <h5>
+                <h5
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
                   {e}
-                  <button onClick={() => deleteCountry(e)}>x</button>
+                  <button
+                    className="buttonNoStyle"
+                    onClick={() => deleteCountry(e)}
+                  >
+                    <svg
+                      style={{ width: "20px" }}
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
                 </h5>
               ))}
             </div>
@@ -168,4 +244,30 @@ export function Tourism() {
       </div>
     </div>
   );
+}
+
+function error(parameter) {
+  var error = {};
+  if (!parameter.name) {
+    error.name = "*este campo es obligatorio";
+  }
+  if (!parameter.duration) {
+    error.duration = "*este campo es obligatorio";
+  } else if (isNaN(parameter.duration)) {
+    console.log(parameter.duration);
+    error.duration = "*este campo debe tener UNICAMENTE numeros";
+  }
+  if (!parameter.difficulty) {
+    error.difficulty = "*este campo es obligatorio";
+  }
+  if (!parameter.season) {
+    error.season = "*este campo es obligatorio";
+  }
+  if (parameter.idCountry.length === 0) {
+    error.idCountry = "*debes poner algun pais!";
+  }
+  console.log(parameter);
+
+  console.log(error);
+  return error;
 }
