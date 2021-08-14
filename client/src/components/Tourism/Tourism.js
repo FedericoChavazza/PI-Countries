@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { postCountries, getCountries } from "../../actions";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ export function Tourism() {
   var country = useSelector((state) => state.countries);
   var dispatch = useDispatch();
 
+  const inputPaises = useRef();
   const [countryMap, setCountryMap] = useState([]);
   const [postCountry, setPostCountry] = useState({
     idCountry: [],
@@ -77,7 +78,6 @@ export function Tourism() {
   }
 
   function ultimateSubmit(e) {
-    setErrorHandler(error({ ...postCountry, [e.target.name]: e.target.value }));
     e.preventDefault();
     let locura = error(postCountry);
 
@@ -89,6 +89,20 @@ export function Tourism() {
           " "
         )}`
       );
+
+      setPostCountry({
+        idCountry: [],
+        name: "",
+        difficulty: "Select Difficulty",
+        duration: "",
+        season: "Season",
+      });
+
+      inputPaises.current.value = "";
+
+      setCountryMap([]);
+
+      setErrorHandler({});
     } else {
       setErrorHandler(locura);
     }
@@ -138,6 +152,7 @@ export function Tourism() {
             </div>
             <div className="chau">
               <select
+                value={postCountry.difficulty}
                 className={errorHandler.difficulty && "error"}
                 name="difficulty"
                 onChange={(e) => handleChange(e)}
@@ -158,6 +173,7 @@ export function Tourism() {
             </div>
             <div className="chau">
               <select
+                value={postCountry.season}
                 className={errorHandler.season && "error"}
                 name="season"
                 onChange={(e) => handleChange(e)}
@@ -183,6 +199,7 @@ export function Tourism() {
             <label>Select a Country!</label>
             <form onSubmit={(e) => handleSubmit(e)}>
               <input
+                ref={inputPaises}
                 className={errorHandler.idCountry && "error"}
                 onChange={(e) => handleInput(e)}
               ></input>
@@ -258,10 +275,10 @@ function error(parameter) {
     console.log(parameter.duration);
     error.duration = "*este campo debe tener UNICAMENTE numeros";
   }
-  if (!parameter.difficulty) {
+  if (!parameter.difficulty || parameter.difficulty === "Select Difficulty") {
     error.difficulty = "*este campo es obligatorio";
   }
-  if (!parameter.season) {
+  if (!parameter.season || parameter.season === "Season") {
     error.season = "*este campo es obligatorio";
   }
   if (parameter.idCountry.length === 0) {

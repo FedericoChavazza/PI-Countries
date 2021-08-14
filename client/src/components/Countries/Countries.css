@@ -369,38 +369,37 @@ body {
   border-radius: 1rem;
   border: 1px solid grey;
 }
-.li ul {
+.li div {
   list-style: none;
   font-size: 16px;
 }
-.li ul img {
+.li div img {
   position: relative;
-  width: 400px;
+  width: 50%;
   height: 250px;
   border-radius: 0.6rem;
-  margin: 20px;
+  margin: 55px 40px 0;
+  text-align: left;
 }
 
 .li {
   position: relative;
-  display: inline-block;
+  display: block;
+  margin: 70px auto 0;
   border-radius: 1rem;
-  padding-right: 300px;
+  width: 1000px;
   background-color: rgba(240, 240, 240, 0.459);
   border: 1px solid grey;
-  margin-top: 70px;
 }
 
 .detailsCountry {
   position: relative;
   text-align: center;
   display: inline-block;
-  right: -750px;
-  top: -285px;
-  margin: 20px 20px;
+  margin: -15px 20px;
 }
 
-.detailsCountry li {
-  margin: 20px 20px;
+.detailsCountry p {
+  margin: 0px 20px 20px;
   text-align: center;
 }

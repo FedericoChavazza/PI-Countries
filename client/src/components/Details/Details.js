@@ -20,39 +20,37 @@ export default function OnlyCountry(props) {
 
   return (
     <div className="li">
-      <h1>
+      <div>
         <Link to="/countries">
           <h2>go back!</h2>
         </Link>
-        <ul list-style-type="none">
-          <li>
-            <img src={oneCountry.img}></img>
-          </li>
+        <div>
+          <img src={oneCountry.img}></img>
           <div className="detailsCountry">
-            <li>name : {oneCountry.name}</li>
-            <li>capital : {oneCountry.capital}</li>
-            <li>continent : {oneCountry.continent}</li>
-            <li>subRegion : {oneCountry.subregion} </li>
-            <li>area : {oneCountry.area} </li>
-            <li>population : {oneCountry.population} </li>
+            <p>name : {oneCountry.name}</p>
+            <p>capital : {oneCountry.capital}</p>
+            <p>continent : {oneCountry.continent}</p>
+            <p>subRegion : {oneCountry.subregion} </p>
+            <p>area : {oneCountry.area} </p>
+            <p>population : {oneCountry.population} </p>
           </div>
           {details !== undefined && Object.keys(details).length !== 0
             ? details.map((e, i) => {
                 return (
                   <div className="activitieslol">
-                    <li>activities {i + 1} </li>
+                    <p>activities {i + 1} </p>
                     <div>
-                      <li>{e.name}</li>
-                      <li>minutes:{e.duration}</li>
-                      <li>difficulty: {e.difficulty} out of 5</li>
-                      <li>season: {e.season}</li>
+                      <p>{e.name}</p>
+                      <p>minutes:{e.duration}</p>
+                      <p>difficulty: {e.difficulty} out of 5</p>
+                      <p>season: {e.season}</p>
                     </div>
                   </div>
                 );
               })
             : []}
-        </ul>
-      </h1>
+        </div>
+      </div>
     </div>
   );
 }
