@@ -215,7 +215,7 @@ function NavCountries(props) {
             </select>
           </div>
           <div className="hola">
-            <Link to="/inBetween">
+            <Link to="/activity">
               <button>Activity</button>
             </Link>
           </div>

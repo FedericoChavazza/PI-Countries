@@ -36,6 +36,7 @@ export function Tourism() {
   }
 
   function addCountry(e) {
+    console.log(e);
     const dataKey = [];
     var juan = country;
 
@@ -84,7 +85,7 @@ export function Tourism() {
       dispatch(postCountries(postCountry));
 
       alert(
-        `se a subido actividades a los siguientes paises! ${postCountry.idCountry.join(
+        `se ha subido actividades a los siguientes paises! ${postCountry.idCountry.join(
           " "
         )}`
       );

@@ -18,7 +18,7 @@ export function Home() {
       </div>
       <div className="estasHome">
         <Link to="/countries">
-          <h1>Estas en home</h1>
+          <button>Join</button>
         </Link>
       </div>
     </div>

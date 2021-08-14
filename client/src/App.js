@@ -5,8 +5,6 @@ import { Home } from "../src/components/Home/Home";
 import NavCountries from "../src/components/Countries/Countries";
 import OnlyCountry from "../src/components/Details/Details";
 import { Tourism } from "../src/components/Tourism/Tourism";
-import { ActivityChange } from "../src/components/ChooseActionActivity/ChoseeActivity";
-import { Put } from "../src/components/PutActivity/PutActivity";
 
 function App() {
   return (
@@ -15,8 +13,6 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route exact path="/countries" component={NavCountries} />
       <Route exact path="/activity" component={Tourism} />
-      <Route exact path="/inBetween" component={ActivityChange} />
-      <Route exact path="/changeActivity" component={Put} />
     </div>
   );
 }

@@ -316,3 +316,91 @@ body {
   display: grid;
   place-items: center;
 }
+
+.estasHome button {
+  height: 35px;
+  width: 150px;
+  border-radius: 0.6rem;
+  outline: none;
+  border: 1px solid rgb(240, 240, 240);
+  font-size: 18px;
+  color: teal;
+  cursor: pointer;
+  background-color: rgb(240, 240, 240);
+  transition: 1s;
+}
+
+.estasHome button:hover {
+  background-color: grey;
+  color: rgb(0, 78, 61);
+  border: none;
+}
+
+.nav .hola button {
+  height: 35px;
+  width: 150px;
+  border-radius: 2rem;
+  color: black;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  transition: 0.5s;
+}
+.nav .hola button:hover {
+  height: 35px;
+  width: 150px;
+  border-radius: 2rem;
+  color: black;
+  cursor: pointer;
+  background-color: grey;
+  outline: none;
+  border: none;
+}
+
+.nav label {
+  font-size: 18px;
+}
+
+.activitieslol {
+  margin: 40px 40px;
+  display: inline-block;
+  background-color: rgba(231, 231, 231, 0.356);
+  padding: 20px 15px;
+  border-radius: 1rem;
+  border: 1px solid grey;
+}
+.li ul {
+  list-style: none;
+  font-size: 16px;
+}
+.li ul img {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  border-radius: 0.6rem;
+  margin: 20px;
+}
+
+.li {
+  position: relative;
+  display: inline-block;
+  border-radius: 1rem;
+  padding-right: 300px;
+  background-color: rgba(240, 240, 240, 0.459);
+  border: 1px solid grey;
+  margin-top: 70px;
+}
+
+.detailsCountry {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  right: -750px;
+  top: -285px;
+  margin: 20px 20px;
+}
+
+.detailsCountry li {
+  margin: 20px 20px;
+  text-align: center;
+}
