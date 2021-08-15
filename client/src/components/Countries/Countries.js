@@ -222,16 +222,18 @@ function NavCountries(props) {
         </div>
       </div>
       <div className="grid">
-        {filterCountries
-          ? filterCountries.slice(9 * buttonNum - 9, 9 * buttonNum).map((e) => (
-              <div className="countryCard">
-                <Link to={`/countries/${e.id}`}>
-                  <img src={e.img} />
-                  <div className="countryCard-name">{e.name}</div>
-                </Link>
-              </div>
-            ))
-          : []}{" "}
+        {filterCountries.length !== 0 ? (
+          filterCountries.slice(9 * buttonNum - 9, 9 * buttonNum).map((e) => (
+            <div className="countryCard">
+              <Link to={`/countries/${e.id}`}>
+                <img src={e.img} />
+                <div className="countryCard-name">{e.name}</div>
+              </Link>
+            </div>
+          ))
+        ) : (
+          <h3 className="not-found">Country not found! :(</h3>
+        )}{" "}
       </div>
       <div className="absolute">
         <div className="buttonSearch">

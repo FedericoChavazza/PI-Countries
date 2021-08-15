@@ -1,6 +1,9 @@
+import { bindActionCreators } from "redux";
+
 const initialState = {
   countries: [],
   detailCountries: {},
+  activityDetail: {},
 };
 
 const country = (state = initialState, action) => {
@@ -14,6 +17,11 @@ const country = (state = initialState, action) => {
       return {
         ...state,
         detailCountries: action.payload,
+      };
+    case "ACTIVITY":
+      return {
+        ...state,
+        activityDetail: action.payload,
       };
     default:
       return state;

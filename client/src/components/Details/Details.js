@@ -37,15 +37,17 @@ export default function OnlyCountry(props) {
           {details !== undefined && Object.keys(details).length !== 0
             ? details.map((e, i) => {
                 return (
-                  <div className="activitieslol">
-                    <p>activities {i + 1} </p>
-                    <div>
-                      <p>{e.name}</p>
-                      <p>minutes:{e.duration}</p>
-                      <p>difficulty: {e.difficulty} out of 5</p>
-                      <p>season: {e.season}</p>
+                  <Link to={`/activity/put/${e.id}`}>
+                    <div className="activitieslol">
+                      <p>activities {i + 1} </p>
+                      <div>
+                        <p>{e.name}</p>
+                        <p>minutes:{e.duration}</p>
+                        <p>difficulty: {e.difficulty} out of 5</p>
+                        <p>season: {e.season}</p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })
             : []}

@@ -403,3 +403,8 @@ body {
   margin: 0px 20px 20px;
   text-align: center;
 }
+
+.grid .not-found {
+  position: relative;
+  left: 650px;
+}

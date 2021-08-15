@@ -85,4 +85,51 @@ router.post("/activity", async function (req, res, next) {
   }
 });
 
+router.put("/put", async function (req, res, next) {
+  try {
+    const { activity } = req.body;
+    let obj = {};
+    obj = activity;
+    console.log(obj);
+
+    var id = await Activities.findByPk(obj.idActivity);
+    if (id) {
+      await id.update({
+        name: obj.name,
+        difficulty: obj.difficulty,
+        duration: obj.duration,
+        season: obj.season,
+      });
+    }
+    if (id) {
+      await id.setCountries(obj.idCountry);
+      res.json(obj);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/activities/:id", async function (req, res, next) {
+  try {
+    if (req.params.id) {
+      var idFound = await Activities.findByPk(req.params.id, {
+        include: Country,
+      });
+      console.log(idFound);
+      return res.json(
+        idFound
+          ? idFound
+          : { msg: "The key does not belong to an existing activity" }
+      );
+    } else {
+      res
+        .sendStatus(404)
+        .json({ msg: "In order to search by ID, you have to enter a key!" });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

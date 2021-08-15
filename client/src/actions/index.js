@@ -36,3 +36,26 @@ export function postCountries(payload) {
       });
   };
 }
+
+export function PutActivity(payload) {
+  return function (dispatch) {
+    return axios
+      .put("http://localhost:3001/put", { activity: payload })
+      .then((promise) => {
+        return promise.data;
+      });
+  };
+}
+
+export function getActivityDetail(id) {
+  return function (dispatch) {
+    return axios
+      .get(`http://localhost:3001/activities/${id}`)
+      .then((promise) => {
+        dispatch({
+          type: "ACTIVITY",
+          payload: promise.data,
+        });
+      });
+  };
+}
