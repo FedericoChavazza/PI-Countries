@@ -109,7 +109,7 @@ export function PutActivities(props) {
       dispatch(PutActivity(putActividad));
 
       alert(
-        `se ha subido actividades a los siguientes paises! ${putActividad.idCountry.join(
+        `se ha modificado la actividad ${id} para los siguientes paises! ${putActividad.idCountry.join(
           " "
         )}`
       );
@@ -124,157 +124,165 @@ export function PutActivities(props) {
     }
   }
   return (
-    <div className="superDiv">
-      {/* form para submitear con post */}
-      <div className="antesSuperDiv">
-        <div className="fede">
-          {" "}
-          <form onSubmit={(e) => ultimateSubmit(e)}>
-            <div className="chau">
-              <div>
-                <label>Activity</label>
-              </div>
-              <input
-                className={errorHandler.name && "error"}
-                value={putActividad.name}
-                placeholder="activity..."
-                name="name"
-                onChange={(e) => handleChange(e)}
-              ></input>
-              {errorHandler.name && (
-                <h5 style={{ color: "red" }}>{errorHandler.name}</h5>
-              )}
-            </div>
+    <div className="francisco">
+      <div className="mostro">
+        <label>You are about to change the activity number: {id} </label>
+      </div>
+      <div className="ataque-titan">
+        {/* form para submitear con post */}
 
-            <div className="chau">
-              <div>
-                <label>Minutes</label>
-              </div>
-              <input
-                className={errorHandler.duration && "error"}
-                name="duration"
-                placeholder="duration..."
-                value={putActividad.duration}
-                onChange={(e) => handleChange(e)}
-              ></input>
-              {errorHandler.duration && (
-                <h5 style={{ color: "red", outlineColor: "red" }}>
-                  {errorHandler.duration}
-                </h5>
-              )}
-            </div>
-            <div>
-              <label>Difficulty</label>
-            </div>
-            <div className="chau">
-              <select
-                value={putActividad.difficulty}
-                className={errorHandler.difficulty && "error"}
-                name="difficulty"
-                onChange={(e) => handleChange(e)}
-              >
-                <option value="Select Difficulty">Select Difficulty</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-              {errorHandler.difficulty && (
-                <h5 style={{ color: "red" }}>{errorHandler.difficulty}</h5>
-              )}
-            </div>
-            <div>
-              <label>Season</label>
-            </div>
-            <div className="chau">
-              <select
-                value={putActividad.season}
-                className={errorHandler.season && "error"}
-                name="season"
-                onChange={(e) => handleChange(e)}
-              >
-                <option value="Season">Ninguno</option>
-                <option value="Verano">Verano</option>
-                <option value="Otoño">Otoño</option>
-                <option value="Invierno">Invierno</option>
-                <option value="Primavera">Primavera</option>
-              </select>
-              {errorHandler.season && (
-                <h5 style={{ color: "red" }}>{errorHandler.season}</h5>
-              )}
-              <div>
-                <button type="submit">Change!</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div className="fede">
+        <div className="fran">
           {" "}
-          <div className="omori">
-            <label>Select a Country!</label>
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <input
-                ref={inputPaises}
-                className={errorHandler.idCountry && "error"}
-                onChange={(e) => handleInput(e)}
-              ></input>
-              <div className="fabri">
-                {countryMap.length < 50
-                  ? countryMap.map((e) => (
-                      <h4 onClick={() => addCountry(e)}>{e}</h4>
-                    ))
-                  : []}
+          <div className="veca">
+            <form onSubmit={(e) => ultimateSubmit(e)}>
+              <div className="tarde">
+                <div>
+                  <label>Activity</label>
+                </div>
+                <input
+                  className={errorHandler.name && "error"}
+                  value={putActividad.name}
+                  placeholder="activity..."
+                  name="name"
+                  onChange={(e) => handleChange(e)}
+                ></input>
+                {errorHandler.name && (
+                  <h5 style={{ color: "red" }}>{errorHandler.name}</h5>
+                )}
               </div>
-              {errorHandler.idCountry && (
-                <h5 style={{ color: "red" }}>{errorHandler.idCountry}</h5>
-              )}
+
+              <div className="tarde">
+                <div>
+                  <label>Minutes</label>
+                </div>
+                <input
+                  className={errorHandler.duration && "error"}
+                  name="duration"
+                  placeholder="duration..."
+                  value={putActividad.duration}
+                  onChange={(e) => handleChange(e)}
+                ></input>
+                {errorHandler.duration && (
+                  <h5 style={{ color: "red", outlineColor: "red" }}>
+                    {errorHandler.duration}
+                  </h5>
+                )}
+              </div>
+              <div>
+                <label>Difficulty</label>
+              </div>
+              <div className="tarde">
+                <select
+                  value={putActividad.difficulty}
+                  className={errorHandler.difficulty && "error"}
+                  name="difficulty"
+                  onChange={(e) => handleChange(e)}
+                >
+                  <option value="Select Difficulty">Select Difficulty</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                {errorHandler.difficulty && (
+                  <h5 style={{ color: "red" }}>{errorHandler.difficulty}</h5>
+                )}
+              </div>
+              <div>
+                <label>Season</label>
+              </div>
+              <div className="tarde">
+                <select
+                  value={putActividad.season}
+                  className={errorHandler.season && "error"}
+                  name="season"
+                  onChange={(e) => handleChange(e)}
+                >
+                  <option value="Season">Ninguno</option>
+                  <option value="Verano">Verano</option>
+                  <option value="Otoño">Otoño</option>
+                  <option value="Invierno">Invierno</option>
+                  <option value="Primavera">Primavera</option>
+                </select>
+                {errorHandler.season && (
+                  <h5 style={{ color: "red" }}>{errorHandler.season}</h5>
+                )}
+                <div>
+                  <button type="submit">Change!</button>
+                </div>
+              </div>
             </form>
           </div>
-        </div>
-        <div className="fede">
-          <div className="overflow">
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              {putActividad.idCountry.map((e) => (
-                <h5
-                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
-                >
-                  {e}
-                  <button
-                    className="buttonNoStyle"
-                    onClick={() => deleteCountry(e)}
-                  >
-                    <svg
-                      style={{ width: "20px" }}
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </h5>
-              ))}
+          <div className="fede">
+            {" "}
+            <div className="omori">
+              <label>Select a Country!</label>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <input
+                  ref={inputPaises}
+                  className={errorHandler.idCountry && "error"}
+                  onChange={(e) => handleInput(e)}
+                ></input>
+                <div className="fabri">
+                  {countryMap.length < 50
+                    ? countryMap.map((e) => (
+                        <h4 onClick={() => addCountry(e)}>{e}</h4>
+                      ))
+                    : []}
+                </div>
+                {errorHandler.idCountry && (
+                  <h5 style={{ color: "red" }}>{errorHandler.idCountry}</h5>
+                )}
+              </form>
             </div>
           </div>
+          <div className="fede">
+            <div className="overflow">
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                {putActividad.idCountry.map((e) => (
+                  <h5
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                    }}
+                  >
+                    {e}
+                    <button
+                      className="buttonNoStyle"
+                      onClick={() => deleteCountry(e)}
+                    >
+                      <svg
+                        style={{ width: "20px" }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </h5>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* form elegir pais */}
+          <h2>
+            <Link to="/countries">go Back</Link>
+          </h2>
         </div>
-
-        {/* form elegir pais */}
-
-        <h2>
-          <Link to="/countries">go Back</Link>
-        </h2>
       </div>
     </div>
   );

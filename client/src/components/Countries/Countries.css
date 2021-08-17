@@ -4,6 +4,25 @@
   margin: 80px;
 }
 
+body::-webkit-scrollbar {
+  width: 15px;
+  background: #dfdfdf;
+  border: teal;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: teal;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  height: 5px;
+}
+
 body {
   background-image: url("https://wallpaperboat.com/wp-content/uploads/2019/08/worldmap.jpg");
   background-position: 0 -60px;
@@ -51,15 +70,26 @@ body {
 .overflow {
   position: relative;
   margin: auto;
-  height: 350px;
-  width: 320px;
-  background-color: #f5f5f5;
-  border: 3px solid grey;
-  border-radius: 0.4rem;
+  height: 450px;
+  width: 350px;
+  background-color: rgba(231, 231, 231, 0.664);
+  border-radius: 1.6rem;
+  border: 2.5px solid #0b3142;
 }
 .overflow div {
   overflow: auto;
   max-height: 350px;
+}
+
+.overflow h5 {
+  font-weight: bold;
+  font-size: 17px;
+  color: #0b3142;
+}
+
+.overflow button {
+  background-color: #e8ddeead;
+  color: #0b3142;
 }
 
 .fede {
@@ -109,7 +139,7 @@ body {
   cursor: pointer;
 }
 .fabri {
-  background-color: rgb(240, 240, 240);
+  background-color: #66a39dd3;
   width: 90%;
   margin: 0 5%;
   position: absolute;
@@ -117,23 +147,27 @@ body {
   text-align: center;
   overflow: auto;
   max-height: 300px;
+  border-radius: 1rem;
+  color: #0b3142;
 }
 .fabri h4 {
   padding: 10px 0;
   margin: 10px 0;
 }
 .fabri h4:hover {
-  background-color: rgb(218, 218, 218);
+  background-color: rgba(231, 231, 231, 0.664);
   cursor: pointer;
+  border-radius: 0.9rem;
 }
 
 .omori {
   position: relative;
   margin: auto;
-  height: 350px;
-  width: 320px;
-  background-color: #f5f5f5;
-  border-radius: 0.4rem;
+  height: 450px;
+  width: 350px;
+  background-color: rgba(231, 231, 231, 0.664);
+  border-radius: 1.6rem;
+  border: 2.5px solid #0b3142;
 }
 .omori input {
   width: 90%;
@@ -214,18 +248,20 @@ body {
 }
 
 .searchBar {
-  background-color: rgba(173, 173, 173, 0.459);
+  background-color: rgba(231, 231, 231, 0.664);
   height: 100px;
   text-align: center;
   position: relative;
   border: 1px solid teal;
   box-shadow: 20px 2px 3px 1px rgba(10, 10, 10, 0.6);
+  padding-bottom: 20px;
 }
 .searchBar input {
   border-radius: 1rem;
   outline: none;
   height: 20px;
   width: 230px;
+  background-color: rgba(246, 246, 246, 0.815);
   border: 2px solid rgb(0, 114, 114);
 }
 
@@ -236,11 +272,12 @@ body {
   left: 800px;
   bottom: 25px;
   -webkit-filter: grayscale(1);
-  filter: sepia(40) hue-rotate(100deg) brightness(55%);
+  filter: sepia(60) hue-rotate(100deg) brightness(48%);
 }
 
 .searchBar h3 {
-  color: rgb(238, 238, 238);
+  color: teal;
+  font-size: 24px;
 }
 
 .buttonSearch button {
@@ -267,17 +304,21 @@ body {
   height: 35px;
   width: 300px;
   text-align-last: center;
-  margin: 20px 0;
-  outline: none;
+  margin: 10px 0;
+  outline: #0b3142;
+  color: rgb(7, 49, 40);
+  background-color: rgba(231, 231, 231, 0.815);
+  border: 1.4px solid #0b3142;
 }
 
 .countryCard img {
   box-shadow: 2px 2px 3px 1px rgba(10, 10, 10, 0.6);
-  border: 1px solid teal;
+  border: 3px solid teal;
   width: 350px;
   height: 200px;
   border-radius: 0.5rem;
   object-fit: cover;
+  border-bottom-width: 6px;
 }
 
 .countryCard {
@@ -296,11 +337,15 @@ body {
   left: 0;
   position: absolute;
   bottom: -30px;
-  background-color: white;
+  background-color: rgb(240, 240, 240);
   transition: 0.5s all ease;
   border-radius: 0 0 0.5rem 0.5rem;
   padding: 5px 0;
   opacity: 0;
+  color: rgb(7, 49, 40);
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
 }
 
 .countryCard a:hover .countryCard-name {
@@ -326,7 +371,7 @@ body {
   font-size: 18px;
   color: teal;
   cursor: pointer;
-  background-color: rgb(240, 240, 240);
+  background-color: rgba(231, 231, 231, 0.815);
   transition: 1s;
 }
 
@@ -337,37 +382,40 @@ body {
 }
 
 .nav .hola button {
-  height: 35px;
-  width: 150px;
+  height: 50px;
+  width: 165px;
   border-radius: 2rem;
-  color: black;
+  color: #0b3142;
   cursor: pointer;
-  outline: none;
-  border: none;
   transition: 0.5s;
+  background-color: rgba(231, 231, 231, 0.815);
+  border: 1px solid #0b3142;
 }
 .nav .hola button:hover {
-  height: 35px;
-  width: 150px;
+  height: 50px;
+  width: 165px;
   border-radius: 2rem;
-  color: black;
+  color: #0b3142;
   cursor: pointer;
   background-color: grey;
-  outline: none;
-  border: none;
+  border: 1px solid#0b3142;
 }
 
 .nav label {
-  font-size: 18px;
+  font-size: 20px;
+  color: #0b3142;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 .activitieslol {
-  margin: 40px 40px;
+  margin: 60px 60px 60px 60px;
   display: inline-block;
   background-color: rgba(231, 231, 231, 0.356);
   padding: 20px 15px;
   border-radius: 1rem;
   border: 1px solid grey;
+  transition: 1s all ease;
 }
 .li div {
   list-style: none;
@@ -377,9 +425,11 @@ body {
   position: relative;
   width: 50%;
   height: 250px;
-  border-radius: 0.6rem;
+  border-radius: 1.3rem;
   margin: 55px 40px 0;
   text-align: left;
+  transition: 1s all ease;
+  object-fit: cover;
 }
 
 .li {
@@ -397,14 +447,147 @@ body {
   text-align: center;
   display: inline-block;
   margin: -15px 20px;
+  background-color: rgba(231, 231, 231, 0.815);
+  padding: 15px 15px 0 0;
+  border-radius: 0.9rem;
+  border: 1.5px solid rgb(7, 49, 40);
 }
 
 .detailsCountry p {
   margin: 0px 20px 20px;
   text-align: center;
+  font-weight: bold;
+  color: rgb(7, 49, 40);
 }
 
 .grid .not-found {
   position: relative;
   left: 650px;
+}
+
+.hola h3 {
+  color: #0b3142;
+  font-size: 23px;
+  padding: 10px;
+  background-color: rgba(231, 231, 231, 0.815);
+  border: 1.5px solid #0b3142;
+  border-radius: 2rem;
+  font-weight: 1.5px;
+}
+
+.fabriApiJuegos {
+  background-color: rgba(231, 231, 231, 0.815);
+  padding-top: 30px;
+  padding-bottom: 60px;
+  border-radius: 1.5rem;
+  border: 2px solid #0b3142;
+  max-height: 80%;
+}
+
+.chau label {
+  font-weight: bold;
+  color: #0b3142;
+  font-size: 16px;
+  margin: 100px 0;
+}
+
+.chau2 {
+  font-weight: bold;
+  color: #0b3142;
+  font-size: 16px;
+}
+
+.roFoods {
+  position: absolute;
+  top: 750px;
+  right: 1000px;
+}
+
+.li div img:hover {
+  position: relative;
+  width: 55%;
+  height: 325px;
+  border-radius: 1.3rem;
+  margin: 55px 40px 0;
+  text-align: left;
+  transition: 1s all ease;
+  object-fit: cover;
+}
+
+.activitieslol p {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(7, 49, 40);
+}
+
+.labelSUPREMO {
+  display: block;
+  margin: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(7, 49, 40);
+  background-color: teal;
+  border-radius: 1.4rem;
+}
+
+.activitieslol:hover {
+  margin: 0 100px 60px 100px;
+  display: inline-block;
+  background-color: rgb(182, 182, 182);
+  border-radius: 1rem;
+  border: 1px solid rgb(98, 98, 98);
+  transition: 1s all ease;
+}
+
+.ataque-titan {
+  background-color: #66a39dd3;
+  width: 1000px;
+  height: 800px;
+  margin: auto;
+  display: flex;
+  border-radius: 1rem;
+  border: 2px solid #0b3142;
+}
+
+.fran {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tarde input {
+  height: 30px;
+  width: 350px;
+  border-radius: 1rem;
+  outline: none;
+  border: none;
+  background-color: #d7f0edd3;
+  flex: auto;
+}
+
+.tarde select {
+  height: 33px;
+  width: 353px;
+  border-radius: 1rem;
+  outline: none;
+  border: none;
+  background-color: #d7f0edd3;
+  flex: auto;
+}
+
+.mostro label {
+  position: relative;
+  font-size: 23px;
+  font-weight: bold;
+  background-color: #66a39dd3;
+  padding: 5px 15px 5px 15px;
+  border-radius: 1.3rem;
+  border: 2px solid #0b3142;
+}
+
+.mostro {
+  padding: 40px;
 }

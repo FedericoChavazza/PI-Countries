@@ -112,86 +112,89 @@ export function Tourism() {
       {/* form para submitear con post */}
       <div className="antesSuperDiv">
         <div className="fede">
-          {" "}
-          <form onSubmit={(e) => ultimateSubmit(e)}>
-            <div className="chau">
-              <div>
-                <label>Activity</label>
+          <div className="fabriApiJuegos">
+            {" "}
+            <form onSubmit={(e) => ultimateSubmit(e)}>
+              <div className="chau">
+                <div>
+                  <label>Activity</label>
+                </div>
+                <input
+                  className={errorHandler.name && "error"}
+                  value={postCountry.name}
+                  placeholder="activity..."
+                  name="name"
+                  onChange={(e) => handleChange(e)}
+                ></input>
+                {errorHandler.name && (
+                  <h5 style={{ color: "red" }}>{errorHandler.name}</h5>
+                )}
               </div>
-              <input
-                className={errorHandler.name && "error"}
-                value={postCountry.name}
-                placeholder="activity..."
-                name="name"
-                onChange={(e) => handleChange(e)}
-              ></input>
-              {errorHandler.name && (
-                <h5 style={{ color: "red" }}>{errorHandler.name}</h5>
-              )}
-            </div>
 
-            <div className="chau">
-              <div>
-                <label>Minutes</label>
+              <div className="chau">
+                <div>
+                  <label>Minutes</label>
+                </div>
+                <input
+                  className={errorHandler.duration && "error"}
+                  name="duration"
+                  placeholder="duration..."
+                  value={postCountry.duration}
+                  onChange={(e) => handleChange(e)}
+                ></input>
+                {errorHandler.duration && (
+                  <h5 style={{ color: "red", outlineColor: "red" }}>
+                    {errorHandler.duration}
+                  </h5>
+                )}
               </div>
-              <input
-                className={errorHandler.duration && "error"}
-                name="duration"
-                placeholder="duration..."
-                value={postCountry.duration}
-                onChange={(e) => handleChange(e)}
-              ></input>
-              {errorHandler.duration && (
-                <h5 style={{ color: "red", outlineColor: "red" }}>
-                  {errorHandler.duration}
-                </h5>
-              )}
-            </div>
-            <div>
-              <label>Difficulty</label>
-            </div>
-            <div className="chau">
-              <select
-                value={postCountry.difficulty}
-                className={errorHandler.difficulty && "error"}
-                name="difficulty"
-                onChange={(e) => handleChange(e)}
-              >
-                <option value="Select Difficulty">Select Difficulty</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-              {errorHandler.difficulty && (
-                <h5 style={{ color: "red" }}>{errorHandler.difficulty}</h5>
-              )}
-            </div>
-            <div>
-              <label>Season</label>
-            </div>
-            <div className="chau">
-              <select
-                value={postCountry.season}
-                className={errorHandler.season && "error"}
-                name="season"
-                onChange={(e) => handleChange(e)}
-              >
-                <option value="Season">Ninguno</option>
-                <option value="Verano">Verano</option>
-                <option value="Otoño">Otoño</option>
-                <option value="Invierno">Invierno</option>
-                <option value="Primavera">Primavera</option>
-              </select>
-              {errorHandler.season && (
-                <h5 style={{ color: "red" }}>{errorHandler.season}</h5>
-              )}
-              <div>
-                <button type="submit">Submit!</button>
+              <div className="chau2">
+                <label>Difficulty</label>
               </div>
-            </div>
-          </form>
+              <div className="chau">
+                <select
+                  value={postCountry.difficulty}
+                  className={errorHandler.difficulty && "error"}
+                  name="difficulty"
+                  onChange={(e) => handleChange(e)}
+                >
+                  <option value="Select Difficulty">Select Difficulty</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                {errorHandler.difficulty && (
+                  <h5 style={{ color: "red" }}>{errorHandler.difficulty}</h5>
+                )}
+              </div>
+              <div className="chau2">
+                <label>Season</label>
+              </div>
+              <div className="chau">
+                <select
+                  value={postCountry.season}
+                  className={errorHandler.season && "error"}
+                  name="season"
+                  onChange={(e) => handleChange(e)}
+                >
+                  <option value="Season">Ninguno</option>
+                  <option value="Verano">Verano</option>
+                  <option value="Otoño">Otoño</option>
+                  <option value="Invierno">Invierno</option>
+                  <option value="Primavera">Primavera</option>
+                </select>
+                {errorHandler.season && (
+                  <h5 style={{ color: "red" }}>{errorHandler.season}</h5>
+                )}
+
+                <div className="roFoods">
+                  <button type="submit">Submit!</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         <div className="fede">
           {" "}
@@ -223,11 +226,18 @@ export function Tourism() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                borderTopLeftRadius: "1.6rem",
+                borderTopRightRadius: "1.6rem",
+                backgroundColor: "#66a39dd3",
               }}
             >
               {postCountry.idCountry.map((e) => (
                 <h5
-                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
                 >
                   {e}
                   <button

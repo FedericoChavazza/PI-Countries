@@ -26,13 +26,23 @@ export default function OnlyCountry(props) {
         </Link>
         <div>
           <img src={oneCountry.img}></img>
+
           <div className="detailsCountry">
-            <p>name : {oneCountry.name}</p>
-            <p>capital : {oneCountry.capital}</p>
-            <p>continent : {oneCountry.continent}</p>
-            <p>subRegion : {oneCountry.subregion} </p>
-            <p>area : {oneCountry.area} </p>
-            <p>population : {oneCountry.population} </p>
+            <p>Name : {oneCountry.name}</p>
+            <p>Capital : {oneCountry.capital}</p>
+            <p>Continent : {oneCountry.continent}</p>
+            <p>SubRegion : {oneCountry.subregion} </p>
+            <p>Area : {oneCountry.area} km²</p>
+            <p>Population : {oneCountry.population} people</p>
+          </div>
+          <div className="labelSUPREMO">
+            {details !== undefined && Object.keys(details).length !== 0 ? (
+              <label>
+                Here you can change the activity you want by just clicking them!
+              </label>
+            ) : (
+              <label>No activities yet</label>
+            )}
           </div>
           {details !== undefined && Object.keys(details).length !== 0
             ? details.map((e, i) => {

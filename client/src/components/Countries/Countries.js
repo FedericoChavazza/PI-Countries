@@ -24,6 +24,7 @@ function NavCountries(props) {
   }
 
   function handleSelect(event) {
+    console.log(event);
     setSelectActivity(event.target.value);
   }
 
@@ -80,6 +81,9 @@ function NavCountries(props) {
       });
     }
 
+    //agarro el arreglo de actividades recien creado y le pusheo la informacion de las distintas actividades que existen
+    // pregunto en el caso de que ya existan y en el caso en que no
+
     props.country.forEach((e) => {
       e.activities.forEach((actividad) => {
         if (activity.includes(actividad.name)) {
@@ -89,6 +93,10 @@ function NavCountries(props) {
         }
       });
     });
+
+    // en caso de que el valor del select sea diferente de default, busco que me encuentre el objeto con la actividad
+    // que coincida con el valor del option de dicho select, este filtrado me lo traera  ===> [{...}] y esto pisara
+    // filter con aquellos paises los cuales coincidan con las actividades
 
     if (selectActivity !== "default") {
       filter = filter.filter((e) => {
@@ -142,6 +150,8 @@ function NavCountries(props) {
 
   return (
     <div>
+      {/*  aca seteo mi formulario el cual hago los filtrados */}
+
       <div className="searchBar">
         <form onSubmit={(e) => handleSubmit(e)}>
           <h3>Search Countries!</h3>
@@ -170,8 +180,8 @@ function NavCountries(props) {
               <label>Alphabetical</label>
             </div>
             <select name="order" onChange={(e) => handleFilter(e)}>
-              <option value="Dec">Dec</option>
-              <option value="Asc">Asc</option>
+              <option value="Dec">Descendant</option>
+              <option value="Asc">Ascendant</option>
             </select>
           </div>
           <div className="hola">
@@ -179,8 +189,8 @@ function NavCountries(props) {
               <label>Population</label>
             </div>
             <select name="order" onChange={(e) => handleFilter(e)}>
-              <option value="PopulationDec">Dec</option>
-              <option value="PopulationAsc">Asc</option>
+              <option value="PopulationDec">Descendant</option>
+              <option value="PopulationAsc">Ascendant</option>
             </select>
           </div>
           <div className="hola">
@@ -203,9 +213,14 @@ function NavCountries(props) {
             <div>
               <label>Activities</label>
             </div>
-            <select value={selectActivity} onChange={(e) => handleSelect(e)}>
+
+            {/* aca adentro mapeo las actividades que puse en el arreglo "activity" y puse dentro del estado "filterActivities" ,
+            el handleSelect agarra el valor especifico del option el cual fue seleccionado y tiene asignado su value, asi despues setea 
+            el estado "selectActivity"*/}
+
+            <select onChange={(e) => handleSelect(e)}>
               <option selected value="default">
-                default
+                Default
               </option>
               {filterActivities.map((e, i) => (
                 <option key={i} value={e}>
@@ -221,6 +236,9 @@ function NavCountries(props) {
           </div>
         </div>
       </div>
+      {/* aca divido los paises segun el resultado de "buttonNum" el cual posee el valor del boton el cual ah sido
+                seleccionado, con este fin realiza la cuenta para traerme paises especificos del arreglo */}
+
       <div className="grid">
         {filterCountries.length !== 0 ? (
           filterCountries.slice(9 * buttonNum - 9, 9 * buttonNum).map((e) => (
