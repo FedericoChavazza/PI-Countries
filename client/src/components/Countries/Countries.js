@@ -145,6 +145,14 @@ function NavCountries(props) {
       );
     }
 
+    ///////////Area/////////////////
+    if (orderCountries.order === "areaDec") {
+      filter = [...filter].sort((a, b) => (a.area < b.area ? 1 : -1));
+    }
+    if (orderCountries.order === "areaAsc") {
+      filter = [...filter].sort((a, b) => (a.area > b.area ? 1 : -1));
+    }
+
     setCountriesFilter(filter);
   }, [orderCountries, props.country, selectActivity]);
 
@@ -198,7 +206,7 @@ function NavCountries(props) {
               <label>Continent</label>
             </div>
             <select name="continent" onChange={(e) => handleFilter(e)}>
-              <option selected value="DefaultCountries">
+              <option defaultValue value="DefaultCountries">
                 Default
               </option>
               <option value="Asia">Asia</option>
@@ -211,6 +219,15 @@ function NavCountries(props) {
           </div>
           <div className="hola">
             <div>
+              <label>Area</label>
+            </div>
+            <select name="order" onChange={(e) => handleFilter(e)}>
+              <option value="areaAsc">Ascendant</option>
+              <option value="areaDec">Descendant</option>
+            </select>
+          </div>
+          <div className="hola">
+            <div>
               <label>Activities</label>
             </div>
 
@@ -219,7 +236,7 @@ function NavCountries(props) {
             el estado "selectActivity"*/}
 
             <select onChange={(e) => handleSelect(e)}>
-              <option selected value="default">
+              <option defaultValue value="default">
                 Default
               </option>
               {filterActivities.map((e, i) => (
@@ -241,24 +258,26 @@ function NavCountries(props) {
 
       <div className="grid">
         {filterCountries.length !== 0 ? (
-          filterCountries.slice(9 * buttonNum - 9, 9 * buttonNum).map((e) => (
-            <div className="countryCard">
-              <Link to={`/countries/${e.id}`}>
-                <img src={e.img} />
-                <div className="countryCard-name">{e.name}</div>
-              </Link>
-            </div>
-          ))
+          filterCountries
+            .slice(9 * buttonNum - 9, 9 * buttonNum)
+            .map((e, i) => (
+              <div key={i} className="countryCard">
+                <Link to={`/countries/${e.id}`}>
+                  <img src={e.img} />
+                  <div className="countryCard-name">{e.name}</div>
+                </Link>
+              </div>
+            ))
         ) : (
           <h3 className="not-found">Country not found! :(</h3>
         )}{" "}
       </div>
       <div className="absolute">
         <div className="buttonSearch">
-          {num.map((e) => {
+          {num.map((e, i) => {
             return (
               e !== 0 && (
-                <button value={e} onClick={(e) => handleButton(e)}>
+                <button key={i} value={e} onClick={(e) => handleButton(e)}>
                   {e}
                 </button>
               )

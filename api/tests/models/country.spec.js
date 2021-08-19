@@ -1,22 +1,20 @@
-const { Country, conn } = require('../../src/db.js');
-const { expect } = require('chai');
+const { Country, Activity, conn } = require("../../src/db");
+const { expect } = require("chai");
 
-describe('Country model', () => {
-  before(() => conn.authenticate()
-    .catch((err) => {
-      console.error('Unable to connect to the database:', err);
-    }));
-  describe('Validators', () => {
-    beforeEach(() => Country.sync({ force: true }));
-    describe('name', () => {
-      it('should throw an error if name is null', (done) => {
-        Country.create({})
-          .then(() => done(new Error('It requires a valid name')))
-          .catch(() => done());
-      });
-      it('should work when its a valid name', () => {
-        Country.create({ name: 'Argentina' });
-      });
+describe("Model Testing", function () {
+  describe("Country model", function () {
+    beforeEach(async function () {
+      await Activity.sync({ force: true });
+    });
+  });
+  describe("Country model", function () {
+    beforeEach(async function () {
+      await Country.sync({ force: true });
+    });
+    it("No debería crearlo si no recibe un name", (done) => {
+      Country.create({ id: "122333434" })
+        .then(() => done(new Error("La propiedad name es obligatoria")))
+        .catch(() => done());
     });
   });
 });

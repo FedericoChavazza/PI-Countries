@@ -208,8 +208,10 @@ export function Tourism() {
               ></input>
               <div className="fabri">
                 {countryMap.length < 50
-                  ? countryMap.map((e) => (
-                      <h4 onClick={() => addCountry(e)}>{e}</h4>
+                  ? countryMap.map((e, i) => (
+                      <h4 key={i} onClick={() => addCountry(e)}>
+                        {e}
+                      </h4>
                     ))
                   : []}
               </div>
@@ -231,8 +233,9 @@ export function Tourism() {
                 backgroundColor: "#66a39dd3",
               }}
             >
-              {postCountry.idCountry.map((e) => (
+              {postCountry.idCountry.map((e, i) => (
                 <h5
+                  key={i}
                   style={{
                     display: "flex",
                     alignItems: "center",
